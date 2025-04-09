@@ -49,7 +49,7 @@ metadata_obj, todo_table = connect_table()
 
 # ✅ Optional: View full database table
 st.divider()
-with st.expander("📅 Data stored in database Todo table", expanded=False):
+with st.expander("📅 Data stored in Todo table", expanded=False):
     with conn.session as session:
         stmt = sa.select(todo_table)
         result = session.execute(stmt)
