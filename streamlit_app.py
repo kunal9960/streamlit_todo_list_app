@@ -9,7 +9,7 @@ import pandas as pd
 
 st.set_page_config(
     page_title="Streamlit Todo App",
-    page_icon="📃",
+    page_icon="📋",
     initial_sidebar_state="collapsed",
 )
 
@@ -47,7 +47,7 @@ metadata_obj, todo_table = connect_table()
 
 # ✅ Optional: View full database table
 st.divider()
-with st.expander("📄 Full Todo Table", expanded=False):
+with st.expander("📄 Data stored in database Todo Table", expanded=False):
     with conn.session as session:
         stmt = sa.select(todo_table)
         result = session.execute(stmt)
