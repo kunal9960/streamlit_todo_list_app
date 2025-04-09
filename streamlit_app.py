@@ -85,17 +85,11 @@ def check_table_exists(connection: SQLConnection, table_name: str) -> bool:
 
 
 def load_all_todos(connection: SQLConnection, table: Table) -> Dict[int, Todo]:
-    """Fetches all todos from the DB and returns only current user's."""
-    stmt = sa.select(table).order_by(table.c.id)
+    stmt = sa.select(table).where(table.c.user_id == st.session_state.user_id).order_by(table.c.id)
     with connection.session as session:
         result = session.execute(stmt)
         todos = [Todo.from_row(row) for row in result.all()]
-        # Filter only todos where title/description/user_id matches this session
-        return {
-            todo.id: todo
-            for todo in todos
-            if todo and todo.title and st.session_state.user_id.lower() in todo.title.lower()
-        }
+        return {todo.id: todo for todo in todos if todo and todo.title}
 
 
 
@@ -126,7 +120,8 @@ def create_todo_callback(connection: SQLConnection, table: Table):
         return
 
     new_todo_data = {
-        "title": f"{st.session_state.user_id}: {st.session_state.new_todo_form__title}",
+        "user_id": st.session_state.user_id,
+        "title": st.session_state.new_todo_form__title,
         "description": st.session_state.new_todo_form__description,
         "created_at": date.today(),
         "due_at": st.session_state.new_todo_form__due_date,
