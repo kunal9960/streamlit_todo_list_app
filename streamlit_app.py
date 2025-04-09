@@ -9,7 +9,7 @@ import pandas as pd
 
 st.set_page_config(
     page_title="Todo List App",
-    page_icon="📋",
+    page_icon="🎯",
     initial_sidebar_state="collapsed",
 )
 
