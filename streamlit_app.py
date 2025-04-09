@@ -22,7 +22,6 @@ with col1:
         unsafe_allow_html=True)
 with col2:
     st.image("todo dog.gif")
-st.markdown("<hr style='border: 1px solid #CCC;'>", unsafe_allow_html=True)
 # --- Connect to DB and Table ---
 TABLE_NAME = "todo"
 conn = st.connection("todo_db", ttl=5 * 60)
