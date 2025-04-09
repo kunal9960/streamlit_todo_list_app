@@ -39,6 +39,7 @@ SESSION_STATE_KEY_TODOS = "todos_data"
 @dataclass
 class Todo:
     id: Optional[int] = None
+    user_id: Optional[str] = None  # 👈 Add this line
     title: str = ""
     description: Optional[str] = None
     created_at: Optional[date] = None
