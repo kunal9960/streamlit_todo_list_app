@@ -48,7 +48,7 @@ with st.expander("📄 Full Todo Table", expanded=False):
         if df:
             df = pd.DataFrame(df)
             # Reorder columns: user_id (name) first, created_at last
-            preferred_order = ['user_id', 'id', 'title', 'description', 'due_at', 'done', 'created_at']
+            preferred_order = ['user_id', 'title', 'description', 'due_at', 'done', 'created_at']
             df = df[[col for col in preferred_order if col in df.columns]]
             st.dataframe(df, use_container_width=True)
         else:
