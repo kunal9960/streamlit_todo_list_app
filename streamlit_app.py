@@ -16,7 +16,7 @@ st.set_page_config(
 # --- App Title ---
 col1, col2 = st.columns([2, 1])
 with col1:
-    st.write("<h2><b>📝 <u>Database Todo List App</b></h2>", unsafe_allow_html=True)
+    st.write("<h2><b><u>📝 Database Todo List App</u></b></h2>", unsafe_allow_html=True)
     st.write(
         "<i>A multi-user todo dashboard built with Streamlit and SQLAlchemy that stores and retrieves task data from a SQL database. Users can add, edit, and complete todos while the app ensures persistence through backend database storage. A full-table view is also available for tracking all user activity in one place.</i>",
         unsafe_allow_html=True)
@@ -47,7 +47,7 @@ metadata_obj, todo_table = connect_table()
 
 # ✅ Optional: View full database table
 st.divider()
-with st.expander("📄 Data stored in database Todo Table", expanded=False):
+with st.expander("📄 Data stored in database Todo table", expanded=False):
     with conn.session as session:
         stmt = sa.select(todo_table)
         result = session.execute(stmt)
