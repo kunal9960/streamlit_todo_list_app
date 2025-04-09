@@ -63,6 +63,7 @@ def connect_table():
         TABLE_NAME,
         metadata_obj,
         Column("id", Integer, primary_key=True),
+        Column("user_id", String, nullable=True),
         Column("title", String(30)),
         Column("description", String, nullable=True),
         Column("created_at", Date),
