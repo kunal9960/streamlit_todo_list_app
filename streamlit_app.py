@@ -12,11 +12,16 @@ st.set_page_config(
     page_icon="📃",
     initial_sidebar_state="collapsed",
 )
-st.title("Streamlit Todo App")
-st.markdown("<hr style='margin-top: -10px;'>", unsafe_allow_html=True)
 
 # --- App Title ---
-st.title("Streamlit Todo App")
+col1, col2 = st.columns([2, 1])
+with col1:
+    st.write("<h2><b>📝 <u>Database Todo List App</b></h2>", unsafe_allow_html=True)
+    st.write(
+        "<i>A multi-user todo dashboard built with Streamlit and SQLAlchemy that stores and retrieves task data from a SQL database. Users can add, edit, and complete todos while the app ensures persistence through backend database storage. A full-table view is also available for tracking all user activity in one place.</i>",
+        unsafe_allow_html=True)
+with col2:
+    st.image("todo dog.gif")
 
 # --- Connect to DB and Table ---
 TABLE_NAME = "todo"
