@@ -5,6 +5,7 @@ import sqlalchemy as sa
 import streamlit as st
 from sqlalchemy import Boolean, Column, Date, Integer, MetaData, String, Table
 from streamlit.connections import SQLConnection
+import pandas as pd
 
 st.set_page_config(
     page_title="Streamlit Todo App",
@@ -39,16 +40,20 @@ metadata_obj, todo_table = connect_table()
 
 # ✅ Optional: View full database table
 st.divider()
-with st.expander("📄 Show Full Todo Table", expanded=False):
-    if st.button("Show All Todos"):
-        with conn.session as session:
-            stmt = sa.select(todo_table)
-            result = session.execute(stmt)
-            df = result.mappings().all()
-            if df:
-                st.dataframe(df, use_container_width=True)
-            else:
-                st.info("The todo table is currently empty.")
+with st.expander("📄 Full Todo Table", expanded=False):
+    with conn.session as session:
+        stmt = sa.select(todo_table)
+        result = session.execute(stmt)
+        df = result.mappings().all()
+        if df:
+            df = pd.DataFrame(df)
+            # Reorder columns: user_id (name) first, created_at last
+            preferred_order = ['user_id', 'id', 'title', 'description', 'due_at', 'done', 'created_at']
+            df = df[[col for col in preferred_order if col in df.columns]]
+            st.dataframe(df, use_container_width=True)
+        else:
+            st.info("The todo table is currently empty.")
+
 
 # --- Ask for user's name once per session ---
 if "user_id" not in st.session_state or not st.session_state.user_id:
