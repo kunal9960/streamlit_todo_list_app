@@ -229,11 +229,10 @@ def todo_component(connection: SQLConnection, table: Table, todo_id: int):
 
 # --- Sidebar: Admin Options ---
 with st.sidebar:
-    #st.header("Admin")
-    #if st.button("Create table", type="secondary"):
-        #metadata_obj.create_all(conn.engine)
+    st.header("Admin")
+    if st.button("Create table", type="secondary"):
         #st.toast("Todo table created successfully!", icon="✅")
-    #st.divider()
+    st.divider()
     st.subheader("Session State Debug")
     st.json(st.session_state)
 
