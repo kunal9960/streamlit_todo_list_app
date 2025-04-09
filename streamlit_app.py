@@ -49,7 +49,7 @@ metadata_obj, todo_table = connect_table()
 
 # ✅ Optional: View full database table
 st.divider()
-with st.expander("📄 Data stored in database Todo table", expanded=False):
+with st.expander("📅 Data stored in database Todo table", expanded=False):
     with conn.session as session:
         stmt = sa.select(todo_table)
         result = session.execute(stmt)
@@ -66,7 +66,7 @@ with st.expander("📄 Data stored in database Todo table", expanded=False):
 
 # --- Ask for user's name once per session ---
 if "user_id" not in st.session_state or not st.session_state.user_id:
-    st.session_state.user_id = st.text_input("🧑 Enter your name to start:", key="user_input")
+    st.session_state.user_id = st.text_input("Enter your name to start:", key="user_input")
     if not st.session_state.user_id:
         st.stop()
 
