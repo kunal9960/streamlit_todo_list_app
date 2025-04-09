@@ -231,7 +231,7 @@ def todo_component(connection: SQLConnection, table: Table, todo_id: int):
 with st.sidebar:
     st.header("Admin")
     if st.button("Create table", type="secondary"):
-        #st.toast("Todo table created successfully!", icon="✅")
+    #st.toast("Todo table created successfully!", icon="✅")
     st.divider()
     st.subheader("Session State Debug")
     st.json(st.session_state)
