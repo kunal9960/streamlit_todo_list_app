@@ -15,12 +15,6 @@ from sqlalchemy import Table
 from streamlit.connections import SQLConnection
 import uuid
 
-# --- Ask for user's name once per session ---
-if "user_id" not in st.session_state or not st.session_state.user_id:
-    st.session_state.user_id = st.text_input("🧑 Enter your name to start:", key="user_input")
-    if not st.session_state.user_id:
-        st.stop()
-
 st.set_page_config(
     page_title="Streamlit Todo App",
     page_icon="📃",
@@ -30,6 +24,13 @@ st.set_page_config(
 ##################################################
 ### MODELS
 ##################################################
+
+# --- Ask for user's name once per session ---
+if "user_id" not in st.session_state or not st.session_state.user_id:
+    st.session_state.user_id = st.text_input("🧑 Enter your name to start:", key="user_input")
+    if not st.session_state.user_id:
+        st.stop()
+
 
 TABLE_NAME = "todo"
 SESSION_STATE_KEY_TODOS = "todos_data"
