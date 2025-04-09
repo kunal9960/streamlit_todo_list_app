@@ -20,6 +20,9 @@ with col1:
     st.write(
         "<i>A multi-user todo dashboard built with Streamlit and SQLAlchemy that stores and retrieves task data from a SQL database. Users can add, edit, and complete todos while the app ensures persistence through backend database storage. A full-table view is also available for tracking all user activity in one place.</i>",
         unsafe_allow_html=True)
+    st.write(
+        "<b>Accessing any database requires a login so that's why the data here is global.</b>",
+        unsafe_allow_html=True)
 with col2:
     st.image("todo dog.gif")
 # --- Connect to DB and Table ---
@@ -46,7 +49,7 @@ metadata_obj, todo_table = connect_table()
 
 # ✅ Optional: View full database table
 st.divider()
-with st.expander("📄 Data stored in database Todo table (directly accessing database requires a login so the data here is set to global", expanded=False):
+with st.expander("📄 Data stored in database Todo table", expanded=False):
     with conn.session as session:
         stmt = sa.select(todo_table)
         result = session.execute(stmt)
