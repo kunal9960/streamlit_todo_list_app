@@ -13,6 +13,13 @@ from sqlalchemy import MetaData
 from sqlalchemy import String
 from sqlalchemy import Table
 from streamlit.connections import SQLConnection
+import uuid
+
+# --- Ask for user's name once per session ---
+if "user_id" not in st.session_state or not st.session_state.user_id:
+    st.session_state.user_id = st.text_input("🧑 Enter your name to start:", key="user_input")
+    if not st.session_state.user_id:
+        st.stop()
 
 st.set_page_config(
     page_title="Streamlit Todo App",
