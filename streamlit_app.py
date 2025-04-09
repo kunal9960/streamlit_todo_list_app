@@ -12,6 +12,8 @@ st.set_page_config(
     page_icon="📃",
     initial_sidebar_state="collapsed",
 )
+st.title("Streamlit Todo App")
+st.markdown("<hr style='margin-top: -10px;'>", unsafe_allow_html=True)
 
 # --- App Title ---
 st.title("Streamlit Todo App")
