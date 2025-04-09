@@ -8,7 +8,7 @@ from streamlit.connections import SQLConnection
 import pandas as pd
 
 st.set_page_config(
-    page_title="Streamlit Todo App",
+    page_title="Todo List App",
     page_icon="📋",
     initial_sidebar_state="collapsed",
 )
@@ -46,7 +46,7 @@ metadata_obj, todo_table = connect_table()
 
 # ✅ Optional: View full database table
 st.divider()
-with st.expander("📄 Data stored in database Todo table", expanded=False):
+with st.expander("📄 Data stored in database Todo table (directly accessing database requires a login so the data here is set to global", expanded=False):
     with conn.session as session:
         stmt = sa.select(todo_table)
         result = session.execute(stmt)
