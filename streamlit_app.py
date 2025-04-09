@@ -21,6 +21,19 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
+# Optional: Expandable section to view the full table
+with st.expander("📄 Show Full Todo Table", expanded=False):
+    if st.button("Show All Todos"):
+        with conn.session as session:
+            stmt = sa.select(todo_table)
+            result = session.execute(stmt)
+            df = result.mappings().all()
+            if df:
+                st.dataframe(df, use_container_width=True)
+            else:
+                st.info("The todo table is currently empty.")
+
+
 ##################################################
 ### MODELS
 ##################################################
@@ -341,21 +354,6 @@ with st.sidebar:
     ):
         metadata_obj.create_all(conn.engine)
         st.toast("Todo table created successfully!", icon="✅")
-
-    # Add this below your existing admin sidebar code
-    with st.sidebar:
-        st.divider()
-        st.subheader("🔍 View Todo Table")
-
-        if st.button("Show My Todos in Table"):
-            with conn.session as session:
-                stmt = sa.select(todo_table).where(todo_table.c.user_id == st.session_state.user_id)
-                result = session.execute(stmt)
-                df = result.mappings().all()  # returns list of dicts
-                if df:
-                    st.dataframe(df, use_container_width=True)
-                else:
-                    st.info("No todos found for your user.")
 
     st.divider()
     st.subheader("Session State Debug", help="Is not updated by fragment rerun!")
