@@ -124,7 +124,7 @@ def create_todo_callback(connection: SQLConnection, table: Table):
         return
 
     new_todo_data = {
-        "title": st.session_state.new_todo_form__title,
+        "title": f"{st.session_state.user_id}: {st.session_state.new_todo_form__title}",
         "description": st.session_state.new_todo_form__description,
         "created_at": date.today(),
         "due_at": st.session_state.new_todo_form__due_date,
