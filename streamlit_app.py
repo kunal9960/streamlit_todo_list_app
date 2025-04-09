@@ -83,12 +83,18 @@ def check_table_exists(connection: SQLConnection, table_name: str) -> bool:
 
 
 def load_all_todos(connection: SQLConnection, table: Table) -> Dict[int, Todo]:
-    """Fetches all todos from the DB and returns as a dict keyed by id."""
+    """Fetches all todos from the DB and returns only current user's."""
     stmt = sa.select(table).order_by(table.c.id)
     with connection.session as session:
         result = session.execute(stmt)
         todos = [Todo.from_row(row) for row in result.all()]
-        return {todo.id: todo for todo in todos if todo}
+        # Filter only todos where title/description/user_id matches this session
+        return {
+            todo.id: todo
+            for todo in todos
+            if todo and todo.title and st.session_state.user_id.lower() in todo.title.lower()
+        }
+
 
 
 def load_todo(connection: SQLConnection, table: Table, todo_id: int) -> Optional[Todo]:
