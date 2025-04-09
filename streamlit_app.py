@@ -228,14 +228,14 @@ def todo_component(connection: SQLConnection, table: Table, todo_id: int):
         todo_edit_widget(connection, table, todo_item)
 
 # --- Sidebar: Admin Options ---
-#with st.sidebar:
+with st.sidebar:
     #st.header("Admin")
     #if st.button("Create table", type="secondary"):
         #metadata_obj.create_all(conn.engine)
         #st.toast("Todo table created successfully!", icon="✅")
     #st.divider()
-    #st.subheader("Session State Debug")
-    #st.json(st.session_state)
+    st.subheader("Session State Debug")
+    st.json(st.session_state)
 
 # --- Main App Flow ---
 if not check_table_exists(conn, TABLE_NAME):
