@@ -10,7 +10,6 @@ This project creates a multi-user **Todo Dashboard** using **Python, Streamlit, 
 <img src="https://github.com/kunal9960/streamlit_todo_list_app/blob/master/Main%20Page.jpg?raw=true" width="800">
 <img src="https://github.com/kunal9960/streamlit_todo_list_app/blob/master/Database.png?raw=true" width="800">
 
-
 ---
 
 ## Features
