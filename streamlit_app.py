@@ -21,7 +21,7 @@ with col1:
         "<i>A multi-user todo dashboard built with :red[🚀 Streamlit] and:blue[🧙‍♂️SQLAlchemy] that stores and retrieves task data from a SQL database. A Table view is available for tracking all todos in one place. </i>",
         unsafe_allow_html=True)
     st.write(
-        "<b><b>Note: :violet[🛠️ Database] access typically requires login, so this app uses global data for demo purposes.</b></b>",
+        "<b><b>Note: :violet[🛠️ Database] access typically requires login, so this app uses a global database for demo purposes.</b></b>",
         unsafe_allow_html=True)
 with col2:
     st.image("todo dog.gif")
@@ -273,3 +273,55 @@ with st.form("new_todo_form", clear_on_submit=True):
         type="primary",
         use_container_width=True,
     )
+
+st.markdown(
+    "[![GitHub Badge](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=fff&style=flat)](https://github.com/kunal9960/stocks-dashboard)&nbsp;&nbsp;" +
+    "[![Streamlit Badge](https://img.shields.io/badge/Streamlit-FF4B4B?logo=streamlit&logoColor=fff&style=flat)](https://stock-dashboard-kunal.streamlit.app/)")
+
+
+ft = """
+<style>
+a:link , a:visited{
+color: #BFBFBF;  /* theme's text color hex code at 75 percent brightness*/
+background-color: transparent;
+text-decoration: none;
+}
+
+a:hover,  a:active {
+color: #0283C3; /* theme's primary color*/
+background-color: transparent;
+text-decoration: underline;
+}
+
+#page-container {
+  position: relative;
+  min-height: 10vh;
+}
+
+footer{
+    visibility:hidden;
+}
+
+.footer {
+position: relative;
+left: 0;
+top:150px;
+bottom: 0;
+width: 100%;
+background-color: transparent;
+color: #808080;
+text-align: left;
+}
+</style>
+
+<div id="page-container">
+
+<div class="footer">
+<p style='font-size: 1em;'>Made with <a style='display: inline; text-align: left;' href="https://streamlit.io/" target="_blank">Streamlit</a><br 'style= top:3px;'>
+with <img src="https://em-content.zobj.net/source/skype/289/red-heart_2764-fe0f.png" alt="heart" height= "10"/><a style='display: inline; text-align: left;' href="https://github.com/kunal9960" target="_blank"> by Kunal</a>
+<a style='display: inline; text-align: left;'>© Copyright 2025</a></p>
+</div>
+
+</div>
+"""
+st.write(ft, unsafe_allow_html=True)
